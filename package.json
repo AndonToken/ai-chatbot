@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "openai": "^4.103.0",
+    "@ai-sdk/openai": "^1.2.15",
     "@ai-sdk/react": "^1.2.11",
     "@ai-sdk/xai": "^1.2.15",
     "@codemirror/lang-javascript": "^6.2.2",
