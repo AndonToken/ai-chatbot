@@ -3,14 +3,14 @@ import {
   extractReasoningMiddleware,
   wrapLanguageModel,
 } from 'ai';
-import { xai } from '@ai-sdk/xai';
-import { isTestEnvironment } from '../constants';
+import { openai } from '@ai-sdk/openai'; // OpenAI entegrasyonu burada!
+import { isTestEnvironment } from '../constants'; // Kendi ortam değişkenini ayarladığını varsayıyorum.
 import {
   artifactModel,
   chatModel,
   reasoningModel,
   titleModel,
-} from './models.test';
+} from './models.test'; // Test için local modeller
 
 export const myProvider = isTestEnvironment
   ? customProvider({
@@ -23,15 +23,19 @@ export const myProvider = isTestEnvironment
     })
   : customProvider({
       languageModels: {
-        'chat-model': xai('grok-2-vision-1212'),
+        // OpenAI'nin GPT-4o modelini bağlıyoruz:
+        'chat-model': openai('gpt-4o'),
+        // Reasoning (düşünme/analiz) için wrap ile middleware ekliyoruz:
         'chat-model-reasoning': wrapLanguageModel({
-          model: xai('grok-3-mini-beta'),
+          model: openai('o3'),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),
         }),
-        'title-model': xai('grok-2-1212'),
-        'artifact-model': xai('grok-2-1212'),
+        // Başlık ve artefakt için ayrı modeller kullanılabilir:
+        'title-model': openai('gpt-4o'),
+        'artifact-model': openai('gpt-4o'),
       },
       imageModels: {
-        'small-model': xai.image('grok-2-image'),
+        // OpenAI'nin DALL-E modeli için örnek:
+        'small-model': openai.image('dall-e-3'),
       },
     });
