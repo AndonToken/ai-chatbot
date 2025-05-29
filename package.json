@@ -23,7 +23,6 @@
     "@ai-sdk/openai": "^1.2.15",
     "@ai-sdk/react": "^1.2.11",
     "@ai-sdk/xai": "^1.2.15",
-    "tsx": "^4.19.1",
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/lang-python": "^6.1.6",
     "@codemirror/state": "^6.5.0",
@@ -46,6 +45,7 @@
     "@vercel/functions": "^2.0.0",
     "@vercel/otel": "^1.12.0",
     "@vercel/postgres": "^0.10.0",
+    "tailwindcss": "^3.4.1",
     "ai": "4.3.13",
     "bcrypt-ts": "^5.0.2",
     "class-variance-authority": "^0.7.0",
@@ -92,6 +92,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "tailwindcss": "^3.4.1",
     "@biomejs/biome": "1.9.4",
     "@playwright/test": "^1.50.1",
     "@tailwindcss/typography": "^0.5.15",
