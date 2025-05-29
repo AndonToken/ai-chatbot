@@ -13,7 +13,7 @@ export const Greeting = () => {
         transition={{ delay: 0.5 }}
         className="text-2xl font-semibold"
       >
-        Hello there!
+        Hello there! I am Andon AI. 
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: 10 }}
@@ -22,7 +22,7 @@ export const Greeting = () => {
         transition={{ delay: 0.6 }}
         className="text-2xl text-zinc-500"
       >
-        How can I help you today?
+        I am Andon AI. I am developed by the Andon Token (AND) team. You can support my free artificial intelligence by purchasing AND.How can I help you today?
       </motion.div>
     </div>
   );
