@@ -22,7 +22,7 @@ export const Greeting = () => {
         transition={{ delay: 0.6 }}
         className="text-2xl text-zinc-500"
       >
-        I am Andon AI. I am developed by the Andon Token (AND) team. You can support my free artificial intelligence by purchasing AND.How can I help you today?
+        I am developed by the Andon Token (AND) team. You can support my free artificial intelligence by purchasing AND.How can I help you today?
       </motion.div>
     </div>
   );
