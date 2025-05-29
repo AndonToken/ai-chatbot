@@ -24,6 +24,7 @@
     "@ai-sdk/react": "^1.2.11",
     "@ai-sdk/xai": "^1.2.15",
     "tsx": "^4.19.1",
+    "@tailwindcss/typography": "^0.5.16",
     "@codemirror/lang-javascript": "^6.2.2",
     "@codemirror/lang-python": "^6.1.6",
     "@codemirror/state": "^6.5.0",
