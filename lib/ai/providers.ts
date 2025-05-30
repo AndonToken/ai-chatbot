@@ -24,15 +24,15 @@ export const myProvider = isTestEnvironment
   : customProvider({
       languageModels: {
         // OpenAI'nin GPT-4o modelini bağlıyoruz:
-        'chat-model': openai('o4-mini'),
+        'chat-model': openai('gpt-4o'),
         // Reasoning (düşünme/analiz) için wrap ile middleware ekliyoruz:
         'chat-model-reasoning': wrapLanguageModel({
           model: openai('o3'),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),
         }),
         // Başlık ve artefakt için ayrı modeller kullanılabilir:
-        'title-model': openai('o4-mini'),
-        'artifact-model': openai('o4-mini'),
+        'title-model': openai('gpt-4o'),
+        'artifact-model': openai('gpt-4o'),
       },
       imageModels: {
         // OpenAI'nin DALL-E modeli için örnek:
