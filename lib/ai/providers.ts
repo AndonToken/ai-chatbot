@@ -12,8 +12,14 @@ import {
   titleModel,
 } from './models.test';
 
+/**
+ * Provider configuration
+ * – Uses OpenAI Responses API for all language models
+ * – Enables on-demand Web Search via `web_search_options`
+ */
 export const myProvider = isTestEnvironment
   ? customProvider({
+      // Mock models for unit/integration tests
       languageModels: {
         'chat-model': chatModel,
         'chat-model-reasoning': reasoningModel,
@@ -22,18 +28,31 @@ export const myProvider = isTestEnvironment
       },
     })
   : customProvider({
+      // Production models
       languageModels: {
-        'chat-model': openai('gpt-4o'),
+        // Base conversational model (Responses API)
+        'chat-model': openai.responses('gpt-4o'),
+
+        // Same model wrapped with explicit reasoning capture
         'chat-model-reasoning': wrapLanguageModel({
-          model: openai('gpt-4o'),
+          model: openai.responses('gpt-4o'),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),
         }),
-        'title-model': openai('gpt-4o'),
-        'artifact-model': openai('gpt-4o'),
-        'web-search-model': openai('gpt-4o', {
-          web_search_options: {}, // Web search için gerekli parametre!
+
+        // Short title generator
+        'title-model': openai.responses('gpt-4o'),
+
+        // Rich artefact / content generator
+        'artifact-model': openai.responses('gpt-4o'),
+
+        // Model with Web Search tool enabled (invoked only when the model decides)
+        'web-search-model': openai.responses('gpt-4o', {
+          // Empty object → enable Web Search with default behaviour
+          web_search_options: {},
         }),
       },
+
+      // Image generation models
       imageModels: {
         'small-model': openai.image('gpt-image-1'),
       },
