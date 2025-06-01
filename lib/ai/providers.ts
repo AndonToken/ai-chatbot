@@ -14,12 +14,12 @@ import {
 
 /**
  * Provider configuration
- * – Uses OpenAI Responses API for all language models
- * – Enables on-demand Web Search via `web_search_options`
+ * – Uses OpenAI Responses API (stateful) everywhere
+ * – Enables Web Search tool for the dedicated model
  */
 export const myProvider = isTestEnvironment
   ? customProvider({
-      // Mock models for unit/integration tests
+      // Mock modeller (test ortamı)
       languageModels: {
         'chat-model': chatModel,
         'chat-model-reasoning': reasoningModel,
@@ -28,31 +28,31 @@ export const myProvider = isTestEnvironment
       },
     })
   : customProvider({
-      // Production models
+      // Prod modeller
       languageModels: {
-        // Base conversational model (Responses API)
-        'chat-model': openai.responses('gpt-4o'),
+        // Temel sohbet modeli
+        'chat-model': openai.responses({ model: 'gpt-4o' }),
 
-        // Same model wrapped with explicit reasoning capture
+        // Açık “düşünce” middleware’li sürüm
         'chat-model-reasoning': wrapLanguageModel({
-          model: openai.responses('gpt-4o'),
+          model: openai.responses({ model: 'gpt-4o' }),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),
         }),
 
-        // Short title generator
-        'title-model': openai.responses('gpt-4o'),
+        // Başlık üreticisi
+        'title-model': openai.responses({ model: 'gpt-4o' }),
 
-        // Rich artefact / content generator
-        'artifact-model': openai.responses('gpt-4o'),
+        // Uzun içerik / artefact üreticisi
+        'artifact-model': openai.responses({ model: 'gpt-4o' }),
 
-        // Model with Web Search tool enabled (invoked only when the model decides)
-        'web-search-model': openai.responses('gpt-4o', {
-          // Empty object → enable Web Search with default behaviour
-          web_search_options: {},
+        // Web Search etkin model
+        'web-search-model': openai.responses({
+          model: 'gpt-4o',
+          web_search_options: {}, // boş obje → varsayılan aramayla etkin
         }),
       },
 
-      // Image generation models
+      // Görüntü modeli değişmedi
       imageModels: {
         'small-model': openai.image('gpt-image-1'),
       },
