@@ -27,7 +27,7 @@ export const myProvider = isTestEnvironment
         'chat-model': openai('gpt-4o'),
         // Reasoning (düşünme/analiz) için wrap ile middleware ekliyoruz:
         'chat-model-reasoning': wrapLanguageModel({
-          model: openai('o3'),
+          model: openai('gpt-4o'),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),
         }),
         // Başlık ve artefakt için ayrı modeller kullanılabilir:
@@ -36,6 +36,6 @@ export const myProvider = isTestEnvironment
       },
       imageModels: {
         // OpenAI'nin DALL-E modeli için örnek:
-        'small-model': openai.image('dall-e-3'),
+        'small-model': openai.image('gpt-image-1'),
       },
     });
