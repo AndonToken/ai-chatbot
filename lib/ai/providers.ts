@@ -30,7 +30,7 @@ export const myProvider = isTestEnvironment
         }),
         'title-model': openai('gpt-4o'),
         'artifact-model': openai('gpt-4o'),
-        'web-search-model': openai('gpt-4o-search-preview', {
+        'web-search-model': openai('gpt-4o', {
           web_search_options: {}, // Web search için gerekli parametre!
         }),
       },
