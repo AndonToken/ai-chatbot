@@ -12,8 +12,6 @@ import {
   titleModel,
 } from './models.test';
 
-// Web Search için ek import (OpenAI SDK'sında tool olarak kullanılıyor)
-
 export const myProvider = isTestEnvironment
   ? customProvider({
       languageModels: {
@@ -32,8 +30,8 @@ export const myProvider = isTestEnvironment
         }),
         'title-model': openai('gpt-4o'),
         'artifact-model': openai('gpt-4o'),
-        'web-search-model': openai('gpt-4o', {
-          tools: [{ type: 'web_search_preview' }],
+        'web-search-model': openai('gpt-4o-search-preview', {
+          web_search_options: {}, // Web search için gerekli parametre!
         }),
       },
       imageModels: {
